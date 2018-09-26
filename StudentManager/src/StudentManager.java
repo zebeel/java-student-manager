@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class StudentManager {
 	public static Scanner scanner = new Scanner(System.in);
 	private List<Student> studentList;
+	private StudentFile stdFile;
 	private int maxId;
 	
 	/**
@@ -17,6 +18,8 @@ public class StudentManager {
 	 */
 	public StudentManager() {
 		this.studentList = new ArrayList<>();
+		this.stdFile = new StudentFile();
+		this.studentList = this.stdFile.read();
 		this.maxId = 0;
 	}
 	
@@ -33,6 +36,7 @@ public class StudentManager {
 		
 		Student newStd = new Student(id, name, age, address, gpa);
 		this.studentList.add(newStd);
+		this.stdFile.write(this.studentList);
 	}
 	
 	/**
