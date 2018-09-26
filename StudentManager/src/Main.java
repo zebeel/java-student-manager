@@ -42,7 +42,7 @@ public class Main {
 			}
 			
 			if (isExit == true) {
-				System.out.println(" > –”¡“x‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·");
+				System.out.println(" > –”¡“x‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·B");
 				break;
 			}
 				
