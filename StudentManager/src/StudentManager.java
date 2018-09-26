@@ -36,6 +36,82 @@ public class StudentManager {
 	}
 	
 	/**
+	 * Edit student by ID
+	 */
+	public void editStudent() {
+		System.out.println("--- Edit student ---");
+		System.out.print("Input the ID: ");
+		try {
+			int id = Integer.parseInt((scanner.nextLine()));
+			if (id > 0 && id < 10000) {
+				boolean founded = false;
+				for(int i=0; i<this.studentList.size(); i++) {
+					if(this.studentList.get(i).getId() == id) {
+						founded = true;
+						this.studentList.get(i).setName(this.inputName());
+						this.studentList.get(i).setAge(this.inputAge());
+						this.studentList.get(i).setAddress(this.inputAddress());
+						this.studentList.get(i).setGpa(this.inputGpa());
+					}
+				}
+				if(founded == true)
+					System.out.println(" > Updated successfully!");
+				else
+					System.out.println(" > ID not founded!");
+			}
+			else
+				throw new Exception();
+			
+		}catch(Exception e) {
+			System.out.println(" > Invalid id!");
+		}
+	}
+	
+	/**
+	 * Delete student by id
+	 */
+	public void deleteStudent() {
+		System.out.println("--- Delete student ---");
+		System.out.print("Input the ID: ");
+		try {
+			int id = Integer.parseInt((scanner.nextLine()));
+			if (id > 0 && id < 10000) {
+				boolean founded = false;
+				for(int i=0; i<this.studentList.size(); i++) {
+					if(this.studentList.get(i).getId() == id) {
+						founded = true;
+						this.studentList.remove(i);
+						i--;
+					}
+				}
+				if(founded == true)
+					System.out.println(" > Deleted successfully!");
+				else
+					System.out.println(" > ID not founded!");
+			}
+			else
+				throw new Exception();
+			
+		}catch(Exception e) {
+			System.out.println(" > Invalid id!");
+		}
+	}
+	
+	/**
+	 * Sort student list by GPA [increasing]
+	 */
+	public void sortByGpa() {
+		this.studentList.sort(new SortStudentByGpa());
+	}
+	
+	/**
+	 * Sort student list by name [increasing]
+	 */
+	public void sortByName() {
+		this.studentList.sort(new SortStudentByName());
+	}
+	
+	/**
 	 * Input student GPA
 	 * @return
 	 */
@@ -49,7 +125,7 @@ public class StudentManager {
 				}
 				throw new Exception();
 			}catch(Exception e) {
-				System.out.println("Invalid GPA, please try again!");
+				System.out.println(" > Invalid GPA, please try again!");
 			}
 		}
 	}
@@ -77,7 +153,7 @@ public class StudentManager {
 				}
 				throw new Exception();
 			}catch(Exception e) {
-				System.out.println("Invalid age, please try again!");
+				System.out.println(" > Invalid age, please try again!");
 			}
 		}
 	}
@@ -96,7 +172,7 @@ public class StudentManager {
 	 */
 	public void showStudent() {
 		if(this.studentList == null || this.studentList.isEmpty() == true) {
-			System.out.println("Empty Student List!");
+			System.out.println(" > Empty Student List!");
 			return;
 		}
 		

@@ -19,6 +19,18 @@ public class Main {
 			case "1":
 				stdMan.addStudent();
 				break;
+			case "2":
+				stdMan.editStudent();
+				break;
+			case "3":
+				stdMan.deleteStudent();
+				break;
+			case "4":
+				stdMan.sortByGpa();
+				break;
+			case "5":
+				stdMan.sortByName();
+				break;
 			case "6":
 				stdMan.showStudent();
 				break;
@@ -26,11 +38,11 @@ public class Main {
 				isExit = true;
 				break;
 			default:
-				System.out.println("Invalid menu, please reselect bellow menu ");
+				System.out.println(" > Invalid menu, please reselect bellow menu ");
 			}
 			
 			if (isExit == true) {
-				System.out.println("–”¡“x‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·");
+				System.out.println(" > –”¡“x‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·");
 				break;
 			}
 				
