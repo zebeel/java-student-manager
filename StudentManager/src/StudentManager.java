@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class StudentManager {
 	public static Scanner scanner = new Scanner(System.in);
 	private List<Student> studentList;
-	private StudentFile stdFile;
 	private int maxId;
+	private StudentFile stdFile;
 	
 	/**
 	 * Constructor
@@ -19,8 +19,8 @@ public class StudentManager {
 	public StudentManager() {
 		this.studentList = new ArrayList<>();
 		this.stdFile = new StudentFile();
-		this.studentList = this.stdFile.read();
-		this.maxId = 0;
+		this.studentList = this.stdFile.readFile();
+		this.maxId = this.maxId();
 	}
 	
 	/**
@@ -36,7 +36,8 @@ public class StudentManager {
 		
 		Student newStd = new Student(id, name, age, address, gpa);
 		this.studentList.add(newStd);
-		this.stdFile.write(this.studentList);
+		
+		this.stdFile.writeFile(this.studentList);
 	}
 	
 	/**
@@ -58,8 +59,10 @@ public class StudentManager {
 						this.studentList.get(i).setGpa(this.inputGpa());
 					}
 				}
-				if(founded == true)
+				if(founded == true) {
+					this.stdFile.writeFile(this.studentList);
 					System.out.println(" > Updated successfully!");
+				}
 				else
 					System.out.println(" > ID not founded!");
 			}
@@ -88,8 +91,10 @@ public class StudentManager {
 						i--;
 					}
 				}
-				if(founded == true)
+				if(founded == true) {
+					this.stdFile.writeFile(this.studentList);
 					System.out.println(" > Deleted successfully!");
+				}
 				else
 					System.out.println(" > ID not founded!");
 			}
@@ -99,6 +104,22 @@ public class StudentManager {
 		}catch(Exception e) {
 			System.out.println(" > Invalid id!");
 		}
+	}
+	
+	/**
+	 * Find the max ID of student list
+	 * @return
+	 */
+	public int maxId() {
+		int maxId = 0;
+		if(this.studentList.isEmpty() == false) {
+			for(Student std : this.studentList) {
+				if (std.getId() > maxId)
+					maxId = std.getId();
+			}
+		}
+		
+		return maxId;
 	}
 	
 	/**

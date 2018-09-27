@@ -1,9 +1,11 @@
+import java.io.Serializable;
+
 /**
  * 
  * @author chuon-l
  *
  */
-public class Student {
+public class Student implements Serializable {
 	private int id;
 	private String name;
 	private int age;
